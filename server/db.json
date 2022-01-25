@@ -1,1 +1,4 @@
-{}
+{
+  "categories": [{ "id": 1, "name": "Remeras" }],
+  "products": [{ "id": 1, "category": 1, "name": "Remera #1" }]
+}

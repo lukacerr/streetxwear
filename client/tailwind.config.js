@@ -7,6 +7,11 @@ module.exports = {
       poppins: ['Poppins', 'sans-serif'],
       noto: ['Noto Sans', 'sans-serif'],
     },
+    colors: {
+      black: '#000',
+      white: '#fff',
+      red: '#f62937',
+    },
   },
   plugins: [],
 };
