@@ -30,7 +30,7 @@ ReactDOM.render(
           {['item', 'product'].map((x, i) => (
             <Route key={i} path={x}>
               <Route path=":itemId" element={<ItemDetailPage />} />
-              <Route index element={<NotFoundPage />} />
+              <Route index element={<ItemListPage />} />
             </Route>
           ))}
 

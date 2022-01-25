@@ -1,4 +1,4 @@
-function CategoryListPage() {
+function CategoryListPage(params) {
   return <span>Lista de categorias</span>;
 }
 

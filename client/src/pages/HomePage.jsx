@@ -1,4 +1,4 @@
-function HomePage() {
+function HomePage(params) {
   return <span>Home</span>;
 }
 
