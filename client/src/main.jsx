@@ -12,6 +12,7 @@ import ItemDetailPage from '@/pages/ItemDetailPage';
 import ItemListPage from '@/pages/ItemListPage';
 import CategoryListPage from '@/pages/CategoryListPage';
 import CartPage from '@/pages/CartPage';
+import AboutUsPage from '@/pages/AboutUsPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
 ReactDOM.render(
@@ -22,12 +23,12 @@ ReactDOM.render(
         <Route path="/">
           {/* HOME */}
           <Route index element={<HomePage />} />
-          {['index', 'home'].map((x, i) => (
+          {['index', 'home', 'main', 'casa'].map((x, i) => (
             <Route key={i} path={x} element={<HomePage />} />
           ))}
 
           {/* ITEMS (INDIVIDUAL) */}
-          {['item', 'product'].map((x, i) => (
+          {['item', 'product', 'producto'].map((x, i) => (
             <Route key={i} path={x}>
               <Route path=":itemId" element={<ItemDetailPage />} />
               <Route index element={<ItemListPage />} />
@@ -35,17 +36,23 @@ ReactDOM.render(
           ))}
 
           {/* ITEMS (LIST) */}
-          {['items', 'products'].map((x, i) => (
+          {['items', 'products', 'productos'].map((x, i) => (
             <Route key={i} path={x}>
-              <Route path=":categoryId" element={<ItemListPage />} />
+              <Route path=":categoryId">
+                <Route index element={<ItemListPage />} />
+                <Route path=":subcategoryId" element={<ItemListPage />} />
+              </Route>
               <Route index element={<ItemListPage />} />
             </Route>
           ))}
 
           {/* CATEGORIES */}
-          {['category', 'categories'].map((x, i) => (
+          {['category', 'categories', 'categoria', 'categorias'].map((x, i) => (
             <Route key={i} path={x}>
-              <Route path=":categoryId" element={<ItemListPage />} />
+              <Route path=":categoryId">
+                <Route index element={<ItemListPage />} />
+                <Route path=":subcategoryId" element={<ItemListPage />} />
+              </Route>
               <Route index element={<CategoryListPage />} />
             </Route>
           ))}
@@ -58,7 +65,15 @@ ReactDOM.render(
             </Route>
           ))}
 
-          {/* NOTFOUND */}
+          {/* ABOUT US */}
+          {['about', 'about-us', 'contact', 'sobre-nosotros', 'contacto'].map((x, i) => (
+            <Route key={i} path={x}>
+              <Route index element={<AboutUsPage />} />
+              <Route path="*" element={<AboutUsPage />} />
+            </Route>
+          ))}
+
+          {/* NOT FOUND */}
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

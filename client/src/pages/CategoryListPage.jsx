@@ -1,5 +1,5 @@
-function CategoryListPage(params) {
-  return <span>Lista de categorias</span>;
+function CategoryListPage(props) {
+  return <section>Lista de categorias</section>;
 }
 
 export default CategoryListPage;

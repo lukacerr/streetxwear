@@ -1,5 +1,5 @@
-function NotFoundPage(params) {
-  return <span>404 not found</span>;
+function NotFoundPage(props) {
+  return <section>404 not found</section>;
 }
 
 export default NotFoundPage;

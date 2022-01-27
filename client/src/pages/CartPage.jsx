@@ -1,5 +1,5 @@
-function CategoryListPage(params) {
-  return <span>Carrito</span>;
+function CategoryListPage(props) {
+  return <section>Carrito</section>;
 }
 
 export default CategoryListPage;

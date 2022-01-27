@@ -1,4 +1,92 @@
 {
-  "categories": [{ "id": 1, "name": "Remeras" }],
-  "products": [{ "id": 1, "category": 1, "name": "Remera #1" }]
+  "categories": [
+    {
+      "id": 1,
+      "name": "Remeras",
+      "image": "https://i.imgur.com/cCQnakx.jpg",
+      "subcategories": [
+        { "id": 1, "name": "Manga larga", "image": "https://i.imgur.com/cCQnakx.jpg" },
+        { "id": 2, "name": "Manga corta", "image": "https://i.imgur.com/cCQnakx.jpg" },
+        { "id": 3, "name": "Musculosa", "image": "https://i.imgur.com/cCQnakx.jpg" },
+        { "id": 4, "name": "Oversized", "image": "https://i.imgur.com/cCQnakx.jpg" }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Buzos",
+      "image": "https://i.imgur.com/WsvBk2b.jpg",
+      "subcategories": [
+        { "id": 1, "name": "Anorak", "image": "https://i.imgur.com/WsvBk2b.jpg" },
+        { "id": 2, "name": "Hoodie", "image": "https://i.imgur.com/cCQnakx.jpg" },
+        { "id": 3, "name": "Sin capucha", "image": "https://i.imgur.com/cCQnakx.jpg" }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Camperas",
+      "image": "https://i.imgur.com/cCQnakx.jpg",
+      "subcategories": []
+    },
+    {
+      "id": 4,
+      "name": "Pantalones",
+      "image": "https://i.imgur.com/cCQnakx.jpg",
+      "subcategories": [
+        { "id": 1, "name": "Jeans", "image": "https://i.imgur.com/cCQnakx.jpg" },
+        { "id": 2, "name": "Cargo", "image": "https://i.imgur.com/cCQnakx.jpg" },
+        { "id": 3, "name": "Shorts", "image": "https://i.imgur.com/cCQnakx.jpg" }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Calzados",
+      "image": "https://i.imgur.com/cCQnakx.jpg",
+      "subcategories": []
+    },
+    {
+      "id": 6,
+      "name": "Accesorios",
+      "image": "https://i.imgur.com/cCQnakx.jpg",
+      "subcategories": [
+        { "id": 1, "name": "Tapabocas", "image": "https://i.imgur.com/cCQnakx.jpg" },
+        { "id": 2, "name": "Gorras", "image": "https://i.imgur.com/cCQnakx.jpg" },
+        { "id": 3, "name": "Joyería", "image": "https://i.imgur.com/cCQnakx.jpg" }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "category": [2],
+      "categoryName": "Buzos",
+      "subcategory": [1],
+      "name": "Buzo BCLUB anorak rompeviento black unisex",
+      "description": "Esta es la descripción del buzo product ID 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae sapien at est molestie tincidunt a efficitur metus. Morbi quis nunc pretium lorem venenatis lacinia id vitae ipsum. Fusce dolor nunc, volutpat at ullamcorper vel, elementum eget velit. Suspendisse gravida mauris et lacinia varius. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam at purus ac tortor tincidunt venenatis in a ex. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+      "image": "https://i.imgur.com/WsvBk2b.jpg",
+      "price": 6500,
+      "stock": 4
+    },
+    {
+      "id": 2,
+      "category": [1],
+      "categoryName": "Remeras",
+      "subcategory": [2, 4],
+      "name": "Remera BCLUB oversize cargo manga corta unisex",
+      "description": "Esta es la descripción de la remera product ID 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae sapien at est molestie tincidunt a efficitur metus. Morbi quis nunc pretium lorem venenatis lacinia id vitae ipsum. Fusce dolor nunc, volutpat at ullamcorper vel, elementum eget velit. Suspendisse gravida mauris et lacinia varius. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam at purus ac tortor tincidunt venenatis in a ex. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+      "image": "https://i.imgur.com/cCQnakx.jpg",
+      "price": 2500,
+      "stock": 12
+    },
+    {
+      "id": 3,
+      "category": [1],
+      "categoryName": "Remeras",
+      "subcategory": [1, 4],
+      "name": "Remera Vomer Clothing oversize manga larga across",
+      "description": "Esta es la descripción de la remera product ID 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae sapien at est molestie tincidunt a efficitur metus. Morbi quis nunc pretium lorem venenatis lacinia id vitae ipsum. Fusce dolor nunc, volutpat at ullamcorper vel, elementum eget velit. Suspendisse gravida mauris et lacinia varius. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam at purus ac tortor tincidunt venenatis in a ex. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+      "image": "https://i.imgur.com/TVaM4BR.jpg",
+      "price": 1950,
+      "stock": 3
+    }
+  ]
 }
