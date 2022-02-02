@@ -33,10 +33,3 @@ _Se requiere haber hecho la build previamente._
 ```
 
 ---
-
-## COLORES PRINCIPALES
-
-- Negro (#000):
-  <span style="background: #000; color: #000">--------------------</span>
-- Blanco (#fff): <span style="background: #fff; color: #fff">--------------------</span>
-- Rojo (#f62937): <span style="background: #f62937; color: #f62937">--------------------</span>

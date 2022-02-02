@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+import DetailedItem from '@/components/DetailedItem';
+
 function ItemDetailPage(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -24,7 +26,11 @@ function ItemDetailPage(props) {
   if (error) return <span>error</span>;
   if (!data) return <span>no se han encontrado datos</span>;
 
-  return <section>{JSON.stringify(data)}</section>;
+  return (
+    <section>
+      <DetailedItem>{data}</DetailedItem>
+    </section>
+  );
 }
 
 export default ItemDetailPage;

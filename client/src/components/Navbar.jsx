@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { FiShoppingCart } from 'react-icons/fi';
 import logo from '@/assets/logo.svg';
 
+import CartContext from '@/contexts/CartContext';
+
 function Navbar(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [data, setData] = useState([]);
+  const cart = useContext(CartContext);
 
   useEffect(() => {
     const BASE_URL = 'http://localhost:3001/';
@@ -76,7 +79,9 @@ function Navbar(props) {
               hover:text-red transform-gpu transition-all duration-100
           "
         >
-          <span className="md:text-2xl sm:text-xl text-lg mx-1 text-red">0</span>
+          <span className="md:text-2xl sm:text-xl text-lg mx-1 text-red">
+            {cart.map((x) => x.quantity).reduce((a, b) => a + b, 0)}
+          </span>
           <FiShoppingCart className="md:text-4xl sm:text-3xl text-2xl"></FiShoppingCart>
         </Link>
       </div>

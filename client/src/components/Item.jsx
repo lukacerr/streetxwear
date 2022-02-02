@@ -4,7 +4,7 @@ function Item({ children }) {
   return (
     <Link to={'/item/' + children.id}>
       <article
-        className="bg-white text-center shadow-lg rounded-md overflow-hidden
+        className="bg-white text-center shadow-md rounded-md overflow-hidden
           hover:scale-105 transform-gpu transition-transform duration-125"
         title={children.name}
       >
@@ -12,12 +12,12 @@ function Item({ children }) {
           <img
             className="h-full w-full object-cover"
             src={children.image}
-            alt="Imagen del producto"
+            alt={'Imagen de' + children.name}
           />
         </div>
         <div className="px-4 py-4">
-          <span className="font-montserrat text-sm font-semibold italic">
-            {children.categoryName.toUpperCase()}
+          <span className="font-montserrat text-sm font-semibold italic uppercase">
+            {children.categoryName}
           </span>
           <h3 className="font-montserrat">{children.name}</h3>
           <div className="flex justify-between items-center mt-2">
