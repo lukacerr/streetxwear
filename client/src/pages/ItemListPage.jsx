@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+
+import { TailSpin } from 'react-loader-spinner';
 
 import Item from '@/components/Item';
+
+import { GetProducts } from '@/daos/productsDao';
 
 function ItemListPage(props) {
   const [isLoading, setIsLoading] = useState(true);
@@ -11,31 +14,23 @@ function ItemListPage(props) {
   const params = useParams();
 
   useEffect(() => {
-    const BASE_URL = 'http://localhost:3001/';
-
-    axios
-      .get(BASE_URL + 'products')
-      .then((response) => {
-        setData(
-          response.data
-            .filter((x) =>
-              !params.categoryId
-                ? true
-                : x.category.includes(Number(params.categoryId)) &&
-                  (!params.subcategoryId
-                    ? true
-                    : x.subcategory.includes(Number(params.subcategoryId)))
-            )
-            .sort((a, b) => b.stock - a.stock)
-        );
+    GetProducts(params.categoryId, params.subcategoryId)
+      .then((query) => {
+        if (query.error) setError(true);
+        else setData(query.data);
       })
-      .catch((e) => setError(e))
       .finally(() => setIsLoading(false));
 
     return () => {};
   }, [params]);
 
-  if (isLoading) return <span>loading</span>;
+  if (isLoading)
+    return (
+      <section className="flex items-center justify-center">
+        <TailSpin color="#f62937" height={200} width={200} />
+      </section>
+    );
+
   if (error) return <span>error</span>;
   if (!data.length) return <span>no se han encontrado datos</span>;
 

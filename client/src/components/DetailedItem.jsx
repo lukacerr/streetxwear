@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
-import { CartConsumer } from '@/contexts/CartContext';
+import { CartConsumer } from '@/contexts/cartContext';
 
 function DetailedItem({ children }) {
   const itemInCart = CartConsumer.getInCart(children);
@@ -29,8 +29,8 @@ function DetailedItem({ children }) {
           className="cursor-pointer"
           onClick={() => {
             if (itemCount) {
-              setItemCount((x) => x - 1);
               CartConsumer.removeItem(children.id, itemCount == 0);
+              setItemCount((x) => x - 1);
             }
           }}
         ></AiOutlineMinus>
@@ -39,8 +39,8 @@ function DetailedItem({ children }) {
           className="cursor-pointer"
           onClick={() => {
             if (itemCount < children.stock) {
-              setItemCount((x) => x + 1);
               CartConsumer.addItem(children.id);
+              setItemCount((x) => x + 1);
             }
           }}
         ></AiOutlinePlus>

@@ -1,11 +1,29 @@
 import { Link } from 'react-router-dom';
+import { MdOutlineProductionQuantityLimits } from 'react-icons/md';
 
 function Item({ children }) {
   return (
-    <Link to={'/item/' + children.id}>
+    <Link
+      className="relative hover:scale-105 transform-gpu transition-transform duration-125"
+      to={'/item/' + children.id}
+    >
+      {!children.stock && (
+        <span
+          title="Sin stock"
+          className="
+            absolute right-0 top-0 z-10
+            bg-red text-white text-2xl
+            flex items-center justify-center
+            w-12 h-12 -translate-y-4 translate-x-4
+            rounded-md shadow-lg 
+          "
+        >
+          <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
+        </span>
+      )}
+
       <article
-        className="bg-white text-center shadow-md rounded-md overflow-hidden
-          hover:scale-105 transform-gpu transition-transform duration-125"
+        className="bg-white text-center shadow-md rounded-md overflow-hidden"
         title={children.name}
       >
         <div className="aspect-square">

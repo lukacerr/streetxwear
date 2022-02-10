@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 
 import DetailedItem from '@/components/DetailedItem';
+
+import { TailSpin } from 'react-loader-spinner';
+
+import { GetProductById } from '@/daos/productsDao';
 
 function ItemDetailPage(props) {
   const [isLoading, setIsLoading] = useState(true);
@@ -11,18 +14,23 @@ function ItemDetailPage(props) {
   const params = useParams();
 
   useEffect(() => {
-    const BASE_URL = 'http://localhost:3001/';
-
-    axios
-      .get(BASE_URL + 'products/' + params.itemId)
-      .then((response) => setData(response.data))
-      .catch((e) => setError(e))
+    GetProductById(params.itemId)
+      .then((query) => {
+        if (query.error) setError(true);
+        else setData(query.data);
+      })
       .finally(() => setIsLoading(false));
 
     return () => {};
   }, []);
 
-  if (isLoading) return <span>loading</span>;
+  if (isLoading)
+    return (
+      <section className="flex items-center justify-center">
+        <TailSpin color="#f62937" height={200} width={200} />
+      </section>
+    );
+
   if (error) return <span>error</span>;
   if (!data) return <span>no se han encontrado datos</span>;
 

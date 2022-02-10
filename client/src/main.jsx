@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import '@/styles/main.scss';
 
-import { CartProvider } from '@/contexts/CartContext';
+import { CartProvider } from '@/contexts/cartContext';
 
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -14,6 +16,7 @@ import ItemListPage from '@/pages/ItemListPage';
 import CategoryListPage from '@/pages/CategoryListPage';
 import CartPage from '@/pages/CartPage';
 import AboutUsPage from '@/pages/AboutUsPage';
+import CheckoutPage from '@/pages/CheckoutPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
 ReactDOM.render(
@@ -72,6 +75,14 @@ ReactDOM.render(
               <Route key={i} path={x}>
                 <Route index element={<AboutUsPage />} />
                 <Route path="*" element={<AboutUsPage />} />
+              </Route>
+            ))}
+
+            {/* CHECKOUT */}
+            {['checkout'].map((x, i) => (
+              <Route key={i} path={x}>
+                <Route index element={<NotFoundPage />} />
+                <Route path=":orderId" element={<CheckoutPage />} />
               </Route>
             ))}
 

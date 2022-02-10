@@ -1,22 +1,21 @@
 import { useState, useEffect, createContext } from 'react';
-import axios from 'axios';
-
-// * CONTEXT
-const CartContext = createContext([]);
-CartContext.displayName = 'CartContext';
-export default CartContext;
 
 // * COMMON
 const CART_STORAGE = 'sxw-cart';
 const ON_CART_CHANGED_EVENT = new Event('onCartChanged');
 let CURRENT_CART = JSON.parse(localStorage.getItem(CART_STORAGE)) || [];
 
+// * CONTEXT
+const CartContext = createContext(CURRENT_CART);
+CartContext.displayName = 'CartContext';
+export default CartContext;
+
 // * PROVIDER
 export const CartProvider = ({ children }) => {
   const [value, setValue] = useState(CURRENT_CART);
 
   useEffect(() => {
-    const refetchCart = () => setValue(CURRENT_CART);
+    const refetchCart = () => setValue([...CURRENT_CART]);
     window.addEventListener(ON_CART_CHANGED_EVENT.type, refetchCart);
     return () => window.removeEventListener(ON_CART_CHANGED_EVENT.type, refetchCart);
   }, []);
@@ -26,25 +25,28 @@ export const CartProvider = ({ children }) => {
 
 // * CONSUMER
 const ChangeAndDispatch = (newCart) => {
-  localStorage.setItem(CART_STORAGE, JSON.stringify((CURRENT_CART = newCart)));
+  localStorage.setItem(CART_STORAGE, JSON.stringify((CURRENT_CART = [...newCart])));
   window.dispatchEvent(ON_CART_CHANGED_EVENT);
 };
 
 export const CartConsumer = {
   addItem: (itemId, quantity = 1) => {
+    if (!itemId) return;
     const item = CURRENT_CART.find((x) => x.id == itemId);
     if (item) item.quantity += quantity;
     else CURRENT_CART.push({ id: itemId, quantity });
     ChangeAndDispatch([...CURRENT_CART]);
   },
   removeItem: (itemId, clear = false) => {
+    if (!itemId) return;
     const item = CURRENT_CART.find((x) => x.id == itemId);
     if (!clear && item.quantity > 1) item.quantity--;
     else CURRENT_CART.splice(CURRENT_CART.indexOf(item), 1);
     ChangeAndDispatch([...CURRENT_CART]);
   },
   clear: () => CURRENT_CART.length && ChangeAndDispatch([]),
-  getInCart: ({ id, stock }) => {
+  getInCart: ({ id, stock }, context) => {
+    if (context) CURRENT_CART = [...context];
     const item = CURRENT_CART.find((x) => x.id == id);
     if (item && item.quantity > stock) {
       if (stock) item.quantity = stock;

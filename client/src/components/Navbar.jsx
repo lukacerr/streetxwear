@@ -1,11 +1,16 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
-import { FiShoppingCart } from 'react-icons/fi';
+import { TailSpin } from 'react-loader-spinner';
+
+import { RiMenuLine } from 'react-icons/ri';
+import { FiShoppingCart, FiMoon } from 'react-icons/fi';
 import logo from '@/assets/logo.svg';
 
-import CartContext from '@/contexts/CartContext';
+import CartContext from '@/contexts/cartContext';
+import { ToggleTheme } from '@/common/nightTheme';
+
+import { GetCategories } from '@/daos/categoriesDao';
 
 function Navbar(props) {
   const [isLoading, setIsLoading] = useState(true);
@@ -14,20 +19,23 @@ function Navbar(props) {
   const cart = useContext(CartContext);
 
   useEffect(() => {
-    const BASE_URL = 'http://localhost:3001/';
-
-    axios
-      .get(BASE_URL + 'categories')
-      .then((response) => {
-        setData(response.data.sort((a, b) => b.name - a.name));
+    GetCategories()
+      .then((query) => {
+        if (query.error) setError(true);
+        else setData(query.data);
       })
-      .catch((e) => setError(e))
       .finally(() => setIsLoading(false));
 
     return () => {};
   }, []);
 
-  if (isLoading) return <span>loading</span>;
+  if (isLoading)
+    return (
+      <section className="flex items-center justify-center">
+        <TailSpin color="#f62937" height={200} width={200} />
+      </section>
+    );
+
   if (error) return <span>error</span>;
   if (!data.length) return <span>no se han encontrado datos</span>;
 
@@ -50,20 +58,41 @@ function Navbar(props) {
         />
       </Link>
 
-      <div className="flex md:gap-x-12 gap-x-4">
-        <ul className="flex items-center md:gap-x-12 gap-x-4">
+      <div className="flex md:gap-x-12 gap-x-4 lg:flex-row flex-row-reverse items-center">
+        <RiMenuLine
+          className="md:text-4xl sm:text-3xl text-2xl 
+          lg:hidden block
+          hover:scale-110 hover:text-red cursor-pointer
+          transform-gpu transition-all duration-100"
+        ></RiMenuLine>
+
+        <ul
+          className="
+          flex items-center lg:flex-row flex-col 
+          md:gap-x-12 gap-x-4 
+          lg:flex hidden
+          font-poppins text-xl font-medium uppercase tracking-wide
+        "
+        >
           <li className="hover:border-b-4 border-red transition-all duration-75">
             <Link to="/about">
-              <span className="font-poppins text-xl">Contacto</span>
+              <span>Contacto</span>
             </Link>
           </li>
 
           <li className="hover:border-b-4 border-red transition-all duration-75">
             <Link to="/items">
-              <span className="font-poppins text-xl">Productos</span>
+              <span>Productos</span>
             </Link>
           </li>
 
+          <li className="hover:border-b-4 border-red transition-all duration-75">
+            <Link to="/categories">
+              <span>Categorías</span>
+            </Link>
+          </li>
+
+          {/*
           {data.map((x) => (
             <li key={x.id} className="hover:border-b-4 border-red transition-all duration-75">
               <Link to={'/categories/' + x.id}>
@@ -71,7 +100,15 @@ function Navbar(props) {
               </Link>
             </li>
           ))}
+          */}
         </ul>
+
+        <FiMoon
+          onClick={ToggleTheme}
+          className="md:text-4xl sm:text-3xl text-2xl 
+          hover:scale-110 hover:text-red cursor-pointer
+          transform-gpu transition-all duration-100"
+        ></FiMoon>
 
         <Link
           to="/cart"

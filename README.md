@@ -25,7 +25,7 @@
 
 _Se requiere haber hecho la build previamente._
 
-### _**Iniciar server falso (JSON Server):**_
+### _(Deprecado)_ _**Iniciar server falso (JSON Server):**_
 
 ```
 - cd server
