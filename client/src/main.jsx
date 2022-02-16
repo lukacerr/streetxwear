@@ -85,7 +85,7 @@ ReactDOM.render(
             ))}
 
             {/* CHECKOUT */}
-            {['checkout, revision'].map((x, i) => (
+            {['checkout', 'revision', 'order', 'orders'].map((x, i) => (
               <Route key={i} path={x}>
                 <Route index element={<NotFoundPage />} />
                 <Route path=":orderId" element={<CheckoutPage />} />

@@ -31,3 +31,5 @@ _Se requiere haber generado la build previamente._
 ## Bugs/TODOs pendientes (a conciencia)
 
 - Faltan muchos estilos... demasiados
+- El menú hamburguesa en resoluciones mobile no funciona (no es un bug, simplemente no está hecho)
+- La página de contacto quedó sin hacer
