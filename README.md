@@ -2,34 +2,32 @@
 
 # STREETXWEAR
 
+## Interacciones con el cliente
+
+_Apuntando al directorio del cliente usando `cd client`._
+
 ### _**Iniciar cliente debug (Vitejs):**_
 
 ```
-- cd client
-- npm run dev
+npm run dev
 ```
 
-### _**Build de cliente:**_
+### _**Generar build:**_
 
 ```
-- cd client
-- npm run build
+npm run build
 ```
 
-### _**Ejecución de la build:**_
+### _**Ejecución de la build local:**_
 
 ```
-- cd client
-- npm run preview
+npm run preview
 ```
 
-_Se requiere haber hecho la build previamente._
-
-### _(Deprecado)_ _**Iniciar server falso (JSON Server):**_
-
-```
-- cd server
-- npm run mock
-```
+_Se requiere haber generado la build previamente._
 
 ---
+
+## Bugs/TODOs pendientes (a conciencia)
+
+- Faltan muchos estilos... demasiados

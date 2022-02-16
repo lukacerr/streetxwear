@@ -1,15 +1,20 @@
+// * REACT IMPORTS
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+// * STYLE IMPORTS
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import '@/styles/main.scss';
 
+// * CONTEXT IMPORTS
 import { CartProvider } from '@/contexts/cartContext';
 
+// * COMPONENT IMPORTS
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
+// * PAGE IMPORTS
 import HomePage from '@/pages/HomePage';
 import ItemDetailPage from '@/pages/ItemDetailPage';
 import ItemListPage from '@/pages/ItemListPage';
@@ -19,6 +24,7 @@ import AboutUsPage from '@/pages/AboutUsPage';
 import CheckoutPage from '@/pages/CheckoutPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
+// ! RENDER
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
@@ -79,7 +85,7 @@ ReactDOM.render(
             ))}
 
             {/* CHECKOUT */}
-            {['checkout'].map((x, i) => (
+            {['checkout, revision'].map((x, i) => (
               <Route key={i} path={x}>
                 <Route index element={<NotFoundPage />} />
                 <Route path=":orderId" element={<CheckoutPage />} />

@@ -1,43 +1,21 @@
-import { useState, useEffect, useContext } from 'react';
+// * REACT IMPORTS
+import { memo, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { TailSpin } from 'react-loader-spinner';
-
+// * ASSETS IMPORTS
+import logo from '@/assets/logo.svg';
 import { RiMenuLine } from 'react-icons/ri';
 import { FiShoppingCart, FiMoon } from 'react-icons/fi';
-import logo from '@/assets/logo.svg';
 
+// * CONTEXT IMPORTS
 import CartContext from '@/contexts/cartContext';
+
+// * COMMON IMPORTS
 import { ToggleTheme } from '@/common/nightTheme';
 
-import { GetCategories } from '@/daos/categoriesDao';
-
+// ! COMPONENT Navbar
 function Navbar(props) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [data, setData] = useState([]);
   const cart = useContext(CartContext);
-
-  useEffect(() => {
-    GetCategories()
-      .then((query) => {
-        if (query.error) setError(true);
-        else setData(query.data);
-      })
-      .finally(() => setIsLoading(false));
-
-    return () => {};
-  }, []);
-
-  if (isLoading)
-    return (
-      <section className="flex items-center justify-center">
-        <TailSpin color="#f62937" height={200} width={200} />
-      </section>
-    );
-
-  if (error) return <span>error</span>;
-  if (!data.length) return <span>no se han encontrado datos</span>;
 
   return (
     <nav
@@ -126,4 +104,5 @@ function Navbar(props) {
   );
 }
 
-export default Navbar;
+// # COMPONENT EXPORT
+export default memo(Navbar);

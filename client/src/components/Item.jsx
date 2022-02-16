@@ -1,6 +1,10 @@
+// * REACT IMPORTS
 import { Link } from 'react-router-dom';
+
+// * ASSETS IMPORTS
 import { MdOutlineProductionQuantityLimits } from 'react-icons/md';
 
+// ! COMPONENT Item
 function Item({ children }) {
   return (
     <Link
@@ -48,4 +52,5 @@ function Item({ children }) {
   );
 }
 
+// # COMPONENT EXPORT
 export default Item;

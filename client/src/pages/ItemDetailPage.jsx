@@ -1,44 +1,30 @@
-import { useState, useEffect } from 'react';
+// * REACT IMPORTS
 import { useParams } from 'react-router-dom';
 
+// * COMPONENT IMPORTS
 import DetailedItem from '@/components/DetailedItem';
 
-import { TailSpin } from 'react-loader-spinner';
-
+// * DAO IMPORTS
 import { GetProductById } from '@/daos/productsDao';
 
+// * COMMON IMPORTS
+import effectHandler from '@/common/effectHandler';
+import loadingHandler from '@/common/loadingHandler';
+
+// ! COMPONENT ItemDetailPage
 function ItemDetailPage(props) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [data, setData] = useState({});
   const params = useParams();
+  const status = effectHandler(async () => {
+    return await GetProductById(params.itemId);
+  }, [params]);
 
-  useEffect(() => {
-    GetProductById(params.itemId)
-      .then((query) => {
-        if (query.error) setError(true);
-        else setData(query.data);
-      })
-      .finally(() => setIsLoading(false));
-
-    return () => {};
-  }, []);
-
-  if (isLoading)
-    return (
-      <section className="flex items-center justify-center">
-        <TailSpin color="#f62937" height={200} width={200} />
-      </section>
-    );
-
-  if (error) return <span>error</span>;
-  if (!data) return <span>no se han encontrado datos</span>;
-
-  return (
+  return loadingHandler(
+    status,
     <section>
-      <DetailedItem>{data}</DetailedItem>
+      <DetailedItem>{status.data}</DetailedItem>
     </section>
   );
 }
 
+// # COMPONENT EXPORT
 export default ItemDetailPage;

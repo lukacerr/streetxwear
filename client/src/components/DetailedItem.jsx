@@ -1,10 +1,15 @@
+// * REACT IMPORTS
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
+// * ASSETS IMPORTS
 import { BiArrowBack } from 'react-icons/bi';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
+// * CONTEXT IMPORTS
 import { CartConsumer } from '@/contexts/cartContext';
 
+// ! COMPONENT DetailedItem
 function DetailedItem({ children }) {
   const itemInCart = CartConsumer.getInCart(children);
   const [itemCount, setItemCount] = useState(itemInCart?.quantity ?? 0);
@@ -50,4 +55,5 @@ function DetailedItem({ children }) {
   );
 }
 
+// # COMPONENT EXPORT
 export default DetailedItem;

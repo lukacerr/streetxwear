@@ -1,5 +1,7 @@
+// * REACT IMPORTS
 import { Link } from 'react-router-dom';
 
+// ! COMPONENT HomePage
 function HomePage(props) {
   return (
     <section className="flex flex-col">
@@ -9,4 +11,5 @@ function HomePage(props) {
   );
 }
 
+// # COMPONENT EXPORT
 export default HomePage;

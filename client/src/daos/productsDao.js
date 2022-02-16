@@ -1,9 +1,14 @@
+// * FIRESTORE IMPORTS
 import db from '@/firestore';
-import handler from '@/daos/handler';
 import { doc, getDoc, collection, query, where, getDocs, documentId } from 'firebase/firestore';
 
+// * COMMON IMPORTS
+import handler from '@/common/requestHandler';
+
+// * CONTEXT IMPORTS
 import { CartConsumer } from '@/contexts/CartContext';
 
+// # FUNCTIONS
 export const GetProducts = async (categoryId, subcategoryId) => {
   return await handler(async () => {
     const statements = [];

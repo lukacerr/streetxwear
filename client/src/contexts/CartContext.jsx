@@ -1,8 +1,8 @@
+// * REACT IMPORTS
 import { useState, useEffect, createContext } from 'react';
 
 // * COMMON
 const CART_STORAGE = 'sxw-cart';
-const ON_CART_CHANGED_EVENT = new Event('onCartChanged');
 let CURRENT_CART = JSON.parse(localStorage.getItem(CART_STORAGE)) || [];
 
 // * CONTEXT
@@ -16,8 +16,8 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     const refetchCart = () => setValue([...CURRENT_CART]);
-    window.addEventListener(ON_CART_CHANGED_EVENT.type, refetchCart);
-    return () => window.removeEventListener(ON_CART_CHANGED_EVENT.type, refetchCart);
+    window.addEventListener('onCartChanged', refetchCart);
+    return () => window.removeEventListener('onCartChanged', refetchCart);
   }, []);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
@@ -26,7 +26,7 @@ export const CartProvider = ({ children }) => {
 // * CONSUMER
 const ChangeAndDispatch = (newCart) => {
   localStorage.setItem(CART_STORAGE, JSON.stringify((CURRENT_CART = [...newCart])));
-  window.dispatchEvent(ON_CART_CHANGED_EVENT);
+  window.dispatchEvent(new Event('onCartChanged'));
 };
 
 export const CartConsumer = {

@@ -1,5 +1,10 @@
+// * REACT IMPORTS
+import { memo } from 'react';
+
+// * ASSETS IMPORTS
 import favicon from '@/assets/favicon.png';
 
+// ! COMPONENT Footer
 function Footer(props) {
   return (
     <footer
@@ -16,4 +21,5 @@ function Footer(props) {
   );
 }
 
-export default Footer;
+// # COMPONENT EXPORT
+export default memo(Footer);

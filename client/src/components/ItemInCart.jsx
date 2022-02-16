@@ -1,8 +1,13 @@
+// * REACT IMPORTS
 import { useState } from 'react';
+
+// * ASSETS IMPORTS
 import { AiOutlinePlus, AiOutlineMinus, AiOutlineDelete } from 'react-icons/ai';
 
+// * CONTEXT IMPORTS
 import { CartConsumer } from '@/contexts/cartContext';
 
+// ! COMPONENT ItemInCart
 function ItemInCart({ children }) {
   const [itemCount, setItemCount] = useState(children.quantity ?? 0);
 
@@ -52,4 +57,5 @@ function ItemInCart({ children }) {
   );
 }
 
+// # COMPONENT EXPORT
 export default ItemInCart;

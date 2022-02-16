@@ -1,40 +1,25 @@
-import { useState, useEffect } from 'react';
+// * REACT IMPORTS
 import { useParams } from 'react-router-dom';
 
-import { TailSpin } from 'react-loader-spinner';
-
+// * COMPONENT IMPORTS
 import Item from '@/components/Item';
 
+// * DAO IMPORTS
 import { GetProducts } from '@/daos/productsDao';
 
+// * COMMON IMPORTS
+import effectHandler from '@/common/effectHandler';
+import loadingHandler from '@/common/loadingHandler';
+
+// ! COMPONENT ItemListPage
 function ItemListPage(props) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [data, setData] = useState([]);
   const params = useParams();
-
-  useEffect(() => {
-    GetProducts(params.categoryId, params.subcategoryId)
-      .then((query) => {
-        if (query.error) setError(true);
-        else setData(query.data);
-      })
-      .finally(() => setIsLoading(false));
-
-    return () => {};
+  const status = effectHandler(async () => {
+    return await GetProducts(params.categoryId, params.subcategoryId);
   }, [params]);
 
-  if (isLoading)
-    return (
-      <section className="flex items-center justify-center">
-        <TailSpin color="#f62937" height={200} width={200} />
-      </section>
-    );
-
-  if (error) return <span>error</span>;
-  if (!data.length) return <span>no se han encontrado datos</span>;
-
-  return (
+  return loadingHandler(
+    status,
     <section
       className="
         grid content-start
@@ -45,11 +30,12 @@ function ItemListPage(props) {
         xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1
       "
     >
-      {data.map((x) => (
+      {status.data?.map((x) => (
         <Item key={x.id}>{x}</Item>
       ))}
     </section>
   );
 }
 
+// # COMPONENT EXPORT
 export default ItemListPage;

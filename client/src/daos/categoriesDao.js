@@ -1,7 +1,11 @@
+// * FIRESTORE IMPORTS
 import db from '@/firestore';
-import handler from '@/daos/handler';
 import { collection, query, getDocs } from 'firebase/firestore';
 
+// * COMMON IMPORTS
+import handler from '@/common/requestHandler';
+
+// # FUNCTIONS
 export const GetCategories = async () => {
   return await handler(async () => {
     const snapshot = await getDocs(query(collection(db, 'categories')));
