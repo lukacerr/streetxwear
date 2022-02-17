@@ -7,7 +7,7 @@ function CategoryItem({ children }) {
     <Link to={`/items/${children.id}`}>
       <article className="relative text-center aspect-square rounded-md overflow-hidden shadow-xl flex items-center justify-center bg-black hover:scale-105 transition-all duration-100 group">
         <img
-          className="absolute w-full h-full object-cover scale-105 opacity-30 blur-sm group-hover:opacity-20 group-hover:scale-110 duration-100"
+          className="absolute w-full h-full object-cover scale-105 opacity-40 blur-sm group-hover:opacity-20 group-hover:scale-110 duration-100"
           src={children.image}
           alt={children.name}
         />

@@ -24,7 +24,7 @@ export const GetProducts = async (categoryId, subcategoryId) => {
       products.push({ ...doc.data(), id: doc.id });
     });
 
-    return products.sort((a, b) => (a.stock == 0 ? 1 : b.stock == 0 ? -1 : a.stock + b.stock));
+    return products.sort((a, b) => b.stock - a.stock);
   });
 };
 
@@ -57,8 +57,6 @@ export const GetProductsInCart = async (cart) => {
       products.push({ ...docData, ...docInCart });
     });
 
-    return products.sort((a, b) =>
-      a.quantity == 0 ? 1 : b.quantity == 0 ? -1 : a.quantity + b.quantity
-    );
+    return products.sort((a, b) => a.name.localeCompare(b.name));
   });
 };

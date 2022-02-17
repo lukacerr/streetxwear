@@ -14,7 +14,7 @@ export const GetCategories = async () => {
       categories.push({ ...doc.data(), id: doc.id });
     });
 
-    return categories.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
+    return categories.sort((a, b) => a.name.localeCompare(b.name));
   });
 };
 
@@ -36,6 +36,6 @@ export const GetCategoriesWithSubcats = async () => {
       results.push({ ...cat, id: doc.id });
     });
 
-    return results.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
+    return results.sort((a, b) => a.name.localeCompare(b.name));
   });
 };

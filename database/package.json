@@ -1,0 +1,17 @@
+{
+  "name": "streetxwear-db-utils",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Scripts para interactuar más rápido/cómodo con la db",
+  "main": "main.js",
+  "scripts": {
+    "sc": "node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "firebase": "^9.6.6"
+  }
+}
