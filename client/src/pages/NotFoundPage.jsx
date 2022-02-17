@@ -1,5 +1,5 @@
 // ! COMPONENT NotFoundPage
-function NotFoundPage(props) {
+function NotFoundPage() {
   return <section>404 not found</section>;
 }
 

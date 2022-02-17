@@ -8,6 +8,9 @@ module.exports = {
         '5xl': '3840px',
         '6xl': '5120px',
       },
+      flex: {
+        full: '1 1 0',
+      },
     },
     fontFamily: {
       montserrat: ['Montserrat', 'sans-serif'],

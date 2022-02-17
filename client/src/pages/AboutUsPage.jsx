@@ -1,5 +1,5 @@
 // ! COMPONENT AboutUsPage
-function AboutUsPage(props) {
+function AboutUsPage() {
   return <section>About us + contacto</section>;
 }
 

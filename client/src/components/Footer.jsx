@@ -5,7 +5,7 @@ import { memo } from 'react';
 import favicon from '@/assets/favicon.png';
 
 // ! COMPONENT Footer
-function Footer(props) {
+function Footer() {
   return (
     <footer
       className="
@@ -16,7 +16,7 @@ function Footer(props) {
     "
     >
       <span className="font-montserrat font-semibold text-lg tracking-wide">© STREETXWEAR</span>
-      <img className="h-16" src={favicon} alt="logo" />
+      <img title="STREETXWEAR" className="h-16" src={favicon} alt="logo" />
     </footer>
   );
 }

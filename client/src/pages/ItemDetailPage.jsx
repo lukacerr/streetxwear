@@ -12,7 +12,7 @@ import effectHandler from '@/common/effectHandler';
 import loadingHandler from '@/common/loadingHandler';
 
 // ! COMPONENT ItemDetailPage
-function ItemDetailPage(props) {
+function ItemDetailPage() {
   const params = useParams();
   const status = effectHandler(async () => {
     return await GetProductById(params.itemId);

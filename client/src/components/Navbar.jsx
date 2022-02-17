@@ -14,7 +14,7 @@ import CartContext from '@/contexts/cartContext';
 import { ToggleTheme } from '@/common/nightTheme';
 
 // ! COMPONENT Navbar
-function Navbar(props) {
+function Navbar() {
   const cart = useContext(CartContext);
 
   return (
@@ -29,6 +29,7 @@ function Navbar(props) {
     >
       <Link to="/">
         <img
+          title="STREETXWEAR"
           className="lg:h-12 sm:h-10 h-8 
           hover:scale-105 transform-gpu transition-transform duration-100"
           src={logo}
@@ -46,9 +47,9 @@ function Navbar(props) {
 
         <ul
           className="
-          flex items-center lg:flex-row flex-col 
           md:gap-x-12 gap-x-4 
           lg:flex hidden
+          items-center lg:flex-row flex-col 
           font-poppins text-xl font-medium uppercase tracking-wide
         "
         >
@@ -69,19 +70,10 @@ function Navbar(props) {
               <span>Categorías</span>
             </Link>
           </li>
-
-          {/*
-          {data.map((x) => (
-            <li key={x.id} className="hover:border-b-4 border-red transition-all duration-75">
-              <Link to={'/categories/' + x.id}>
-                <span className="font-poppins text-xl">{x.name}</span>
-              </Link>
-            </li>
-          ))}
-          */}
         </ul>
 
         <FiMoon
+          title="Cambiar tema"
           onClick={ToggleTheme}
           className="md:text-4xl sm:text-3xl text-2xl 
           hover:scale-110 hover:text-red cursor-pointer
@@ -90,8 +82,10 @@ function Navbar(props) {
 
         <Link
           to="/cart"
-          className="flex items-center hover:scale-110   
-              hover:text-red transform-gpu transition-all duration-100
+          title="Carrito"
+          className="
+            flex items-center hover:scale-110   
+          hover:text-red transform-gpu transition-all duration-100
           "
         >
           <span className="md:text-2xl sm:text-xl text-lg mx-1 text-red">

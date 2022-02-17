@@ -16,7 +16,7 @@ import effectHandler from '@/common/effectHandler';
 import loadingHandler from '@/common/loadingHandler';
 
 // ! COMPONENT CartPage
-const CartPage = (props) => {
+const CartPage = () => {
   const cart = useContext(CartContext);
   const status = effectHandler(async () => {
     return await GetProductsInCart(cart);

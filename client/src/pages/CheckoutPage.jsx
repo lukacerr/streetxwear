@@ -1,6 +1,9 @@
 // * REACT IMPORTS
 import { useParams } from 'react-router-dom';
 
+// * LIB IMPORTS
+import dayjs from 'dayjs';
+
 // * DAO IMPORTS
 import { GetOrderById } from '@/daos/ordersDao';
 
@@ -9,20 +12,19 @@ import effectHandler from '@/common/effectHandler';
 import loadingHandler from '@/common/loadingHandler';
 
 // ! COMPONENT CheckoutPage
-function CheckoutPage(props) {
+function CheckoutPage() {
   const params = useParams();
   const status = effectHandler(async () => {
     return await GetOrderById(params.orderId);
   }, [params]);
 
   const data = status.data;
-  console.log(data);
   return loadingHandler(
     status,
     <section className="p-8">
-      <article>
+      <article className="flex flex-col">
         <h1>ID de compra: {data?.id}</h1>
-        {/* <span>Fecha: {data?.date}</span> */}
+        <span>Fecha: {dayjs(data?.date.toDate()).format('DD/MM/YYYY HH:mm:ss')}</span>
         <span>Total: {data?.total}</span>
       </article>
       <hr />

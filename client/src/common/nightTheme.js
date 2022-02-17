@@ -3,6 +3,7 @@ nightTheme.setFetchMethod(window.fetch);
 
 const NIGHT_THEME_STORAGE = 'sxw-night-theme';
 let CURRENT_THEME = JSON.parse(localStorage.getItem(NIGHT_THEME_STORAGE)) ?? !nightTheme.auto();
+if (CURRENT_THEME) nightTheme.enable();
 
 export const ToggleTheme = () => {
   CURRENT_THEME = !nightTheme.isEnabled();
